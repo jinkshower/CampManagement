@@ -2,8 +2,8 @@ package org.CampManagement.model;
 
 public class Subject {
 
-    private final int subjectId;
-    private final String subjectType;
+    private int subjectId;
+    private String subjectType;
     private int studentId;
     private String subjectName;
 
