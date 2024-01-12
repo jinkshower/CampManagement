@@ -8,7 +8,6 @@ import java.util.List;
 public class SubjectStore {
     private List<Subject> list = new ArrayList<>();
 
-<<<<<<< HEAD
     public void addSubject(Subject subject) {
         list.add(subject);
     }
@@ -16,7 +15,7 @@ public class SubjectStore {
     public List<Subject> getSubjects() {
         return list;
     }
-=======
+
     public String getType(int studentId, int subjectId) {
 
         Subject subject = null;
@@ -28,6 +27,4 @@ public class SubjectStore {
 
         return subject.getSubjectType();
     }
-
->>>>>>> 0b3ee309929728f6f3a8212b496c00cc1723727c
 }
