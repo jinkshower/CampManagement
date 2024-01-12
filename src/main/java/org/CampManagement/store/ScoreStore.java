@@ -7,4 +7,8 @@ import java.util.List;
 
 public class ScoreStore {
     private List<Score> list = new ArrayList<>();
+
+    public void add(Score score) {
+        list.add(score);
+    }
 }
