@@ -22,7 +22,10 @@ public class ManagementApp {
         System.out.println("수강생 ID를 입력해주세요");
         int id = Integer.parseInt(sc.nextLine());
 
-
+        if(!studentService.validateId(id)) {
+            System.out.println("없는 아이디입니다.");
+            updateScore();
+        }
 
         System.out.println("과목ID를 입력해주세요");
         int subjectId = Integer.parseInt(sc.nextLine());

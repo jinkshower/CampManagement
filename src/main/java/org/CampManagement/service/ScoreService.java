@@ -8,6 +8,13 @@ public class ScoreService {
 
     public boolean updateScore(int studentId, int subjectId, int round, int score) {
 
+        if (round < 0 || round > 10) {
+            return false;
+        }
+
+        if (score < 0 || score > 100) {
+            return false;
+        }
 
         SubjectStore subjectStore = new SubjectStore();
         String type = subjectStore.getType(studentId, subjectId);
