@@ -43,9 +43,9 @@ public class Subject {
     }
 
 
-//    public List<String> getGrades() {
-//        return grades;
-//    }
+    public List<String> getGrades() {
+        return grades;
+    }
 
     public void addGrade(String grade) {
         this.grades.add(grade);
