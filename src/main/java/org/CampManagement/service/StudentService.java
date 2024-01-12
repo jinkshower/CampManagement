@@ -6,6 +6,7 @@ import org.CampManagement.store.StudentStore;
 import java.util.List;
 
 public class StudentService {
+
     private final StudentStore studentStore;
 
     public StudentService(StudentStore studentStore) {
@@ -26,5 +27,9 @@ public class StudentService {
 
     public Student findStudentById(int studentId) {
         return studentStore.findStudentById(studentId);
+    }
+
+    public boolean validateId(int studentId) {
+        return studentStore.validateId(studentId);
     }
 }

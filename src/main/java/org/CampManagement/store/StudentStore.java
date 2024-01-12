@@ -8,6 +8,7 @@ import java.util.List;
 public class StudentStore {
     private List<Student> list = new ArrayList<>();
 
+<<<<<<< HEAD
     public void addStudent(Student student) {
         list.add(student);
     }
@@ -40,6 +41,10 @@ public class StudentStore {
             }
         }
         return null; // 해당 ID를 가진 학생이 없을 경우 null 반환
+=======
+    public boolean validateId(int studentId) {
+        return list.stream().anyMatch(s -> studentId == (s.getStudentId()));
+>>>>>>> 0b3ee309929728f6f3a8212b496c00cc1723727c
     }
 
 }
