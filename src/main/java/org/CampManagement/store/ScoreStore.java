@@ -38,4 +38,19 @@ public class ScoreStore {
                 .map(Score::getStudentId)
                 .anyMatch(id -> id == studentId);
     }
+
+    public void updateScore(int studentId, int subjectId, int round, int score, String type) {
+        Score target = null;
+        int index = 0;
+        for (int i = 0; i < list.size(); i++) {
+            if (studentId ==(list.get(i).getStudentId()) && subjectId == (list.get(i).getSubjectId())) {
+                target = list.get(i);
+                index = i;
+            }
+        }
+
+        target.updateScore(round, score, type);
+        list.set(index, target);
+    }
+
 }
