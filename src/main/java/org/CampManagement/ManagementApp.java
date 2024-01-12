@@ -1,23 +1,28 @@
 package org.CampManagement;
 
+import org.CampManagement.model.Student;
 import org.CampManagement.service.ScoreService;
 import org.CampManagement.service.StudentService;
 import org.CampManagement.service.SubjectService;
+import org.CampManagement.store.StudentStore;
 
 import java.util.Scanner;
 
 public class ManagementApp {
 
-    private static StudentService studentService = new StudentService();
-    private static SubjectService subjectService = new SubjectService();
-    private static ScoreService scoreService = new ScoreService();
-    private static Scanner sc = new Scanner(System.in);
+    private static StudentService studentService;
+    private static SubjectService subjectService;
+    private static ScoreService scoreService;
+
+
 
     public static void main(String[] args) {
-        updateScore();
+        StudentStore studentStore = new StudentStore();
+        studentService = new StudentService(studentStore);
     }
 
     static void updateScore() {
+        Scanner sc = new Scanner(System.in);
         System.out.println("===========================");
         System.out.println("수강생 ID를 입력해주세요");
         int id = Integer.parseInt(sc.nextLine());
@@ -42,5 +47,25 @@ public class ManagementApp {
 
         System.out.println("수정이 완료되었습니다.");
         System.out.println("===========================");
+    }
+
+    public ManagementApp() {
+
+
+
+        studentService.addStudent(new Student(1, "John Doe"));
+        studentService.addStudent(new Student(2, "Jane Doe"));
+    }
+
+    private void printStudentList() {
+        System.out.println("Printing Student List:");
+        studentService.printStudentListWithIds();
+    }
+
+    private void printStudentNamesWithIds() {
+        System.out.println("\nPrinting Student Names with IDs:");
+        for (String studentInfo : studentService.getStudentListWithIds()) {
+            System.out.println(studentInfo);
+        }
     }
 }
