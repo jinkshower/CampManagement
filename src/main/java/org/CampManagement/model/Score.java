@@ -24,7 +24,7 @@ public class Score {
         this.grade = grade;
     }
 
-    public Score(int studentId, int scoreId, int subjectId, String text, SubjectEnum subjectEnum) {
+    public Score(int scoreId, int studentId, int subjectId, String text, SubjectEnum subjectEnum) {
         this.studentId = studentId;
         this.scoreId = scoreId;
         this.subjectId = subjectId;

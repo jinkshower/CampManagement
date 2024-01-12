@@ -1,12 +1,13 @@
 package org.CampManagement.service;
 
 import java.util.Scanner;
+import org.CampManagement.model.Score;
+import org.CampManagement.model.SubjectEnum;
 import org.CampManagement.store.ScoreStore;
 
 public class ScoreService {
 
     private static final Scanner scanner = new Scanner(System.in);
-    private static final String SCORE_PREFIX = "SC";
     private static int SCORE_INDEX = 0;
     private ScoreStore scoreStore;
 
@@ -20,9 +21,12 @@ public class ScoreService {
 //        }
         System.out.println("과목을 입력해주세요");
 //        SubjectEnum subjectEnum = SubjectEnum.from(readSubject());
+//        int subjectId = 0;
+
         System.out.println("회차, 점수를 입력해주세요");
         String input = readText();
-
+//        Score score = new Score(++SCORE_INDEX, readId, subjectId,input, subjectEnum);
+//        scoreStore.add(score);
     }
 
     public int readInt() {
@@ -35,5 +39,10 @@ public class ScoreService {
 
     public String readText() {
         return scanner.nextLine();
+    }
+
+    private String sequence(String prefix) {
+        SCORE_INDEX++;
+        return prefix + SCORE_INDEX;
     }
 }
