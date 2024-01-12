@@ -76,7 +76,7 @@ public class Score {
         return round;
     }
 
-    public int getGrade() {
+    public String getGrade() {
         return grade;
     }
 
