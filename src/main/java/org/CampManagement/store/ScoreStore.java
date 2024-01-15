@@ -78,7 +78,6 @@ public class ScoreStore {
         return grades;
     }
 
-
     public List<Score> getScoresByStudentId(int studentId) {
         List<Score> studentScores = new ArrayList<>();
 

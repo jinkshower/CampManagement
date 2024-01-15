@@ -29,7 +29,6 @@ public class StudentStore {
         }
     }
 
-
     public String getStudentName(int studentId) {
         for (Student student : list) {
             if (student.getStudentId() == studentId) {

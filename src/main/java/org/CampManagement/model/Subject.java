@@ -22,8 +22,6 @@ public class Subject {
         this.subjectName = subjectName;
     }
 
-
-
     public int getSubjectId() {
         return subjectId;
     }
@@ -39,4 +37,5 @@ public class Subject {
     public String getSubjectName() {
         return subjectName;
     }
+
 }

@@ -66,9 +66,9 @@ public class ScoreService {
     }
 
 
-    public ScoreService(ScoreStore scoreStore) {
-        this.scoreStore = scoreStore;
-    }
+//    public ScoreService(ScoreStore scoreStore) {
+//        this.scoreStore = scoreStore;
+//    }
 
 
     public String getGradeByIdAndSubjectAndSession(int studentId, int subject, int session) {
