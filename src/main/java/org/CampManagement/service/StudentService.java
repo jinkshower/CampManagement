@@ -19,11 +19,6 @@ public class StudentService {
     }
 
 
-    public List<Student> getAllStudents() {
-        return studentStore.getAllStudents();
-    }
-
-
     public void printStudentNamesAndIds() {
         List<Student> students = studentStore.getAllStudents();
 
