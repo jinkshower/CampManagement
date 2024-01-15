@@ -86,7 +86,6 @@ public class ManagementApp {
         String[] str = sc.nextLine().split(",");
         int round = Integer.parseInt(str[0].trim());
         int score = Integer.parseInt(str[1].trim());
-        System.out.println("score = " + score);
         if (!scoreService.updateScore(id, subjectId, round, score)) {
             System.out.println("입력오류입니다");
             updateScore();

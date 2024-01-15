@@ -3,10 +3,8 @@ package org.CampManagement.service;
 import java.util.Scanner;
 import org.CampManagement.model.Score;
 import org.CampManagement.model.Subject;
-import org.CampManagement.model.SubjectEnum;
 import org.CampManagement.store.ScoreStore;
 import org.CampManagement.store.SubjectStore;
-import java.util.List;
 
 
 public class ScoreService {
@@ -57,6 +55,11 @@ public class ScoreService {
         }
 
         if (score < 0 || score > 100) {
+            return false;
+        }
+
+        // 없는 과목 예외
+        if (!SubjectService.validateSubjectByStudentId(studentId, subjectId)) {
             return false;
         }
 

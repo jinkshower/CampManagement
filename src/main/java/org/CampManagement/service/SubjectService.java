@@ -55,4 +55,8 @@ public class SubjectService {
         }
     }
 
+    // 점수 수정 : 없는과목 예외
+    public static boolean validateSubjectByStudentId(int studentId, int subjectId) {
+        return  subjectStore.validateSubjectByStudentId(studentId, subjectId);
+    }
 }
