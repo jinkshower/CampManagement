@@ -2,6 +2,7 @@ package org.CampManagement.service;
 
 import java.util.Scanner;
 import org.CampManagement.model.Score;
+import org.CampManagement.model.Subject;
 import org.CampManagement.model.SubjectEnum;
 import org.CampManagement.store.ScoreStore;
 import org.CampManagement.store.SubjectStore;
@@ -12,24 +13,30 @@ public class ScoreService {
 
     private static final Scanner scanner = new Scanner(System.in);
     private static int SCORE_INDEX = 0;
-    private ScoreStore scoreStore;
+    private ScoreStore scoreStore = new ScoreStore();
+    private StudentService studentService;
+
+    public ScoreService(StudentService studentService) {
+        this.studentService = studentService;
+    }
 
     public void registerScore() {
         System.out.println("수강생 id를 입력 해 주세요");
         int readId = readInt();
 
-        //List<Integer> studentIds = studentService.getStudentId
-        //if(!studentsIds.contains(readId) {
-//            throw new IllegalArgumentException("없는 id입니다");
-//        }
+        studentService.validateId(readId);
+
         System.out.println("과목을 입력해주세요");
-//        SubjectEnum subjectEnum = SubjectEnum.from(readSubject());
-//        int subjectId = 0;
+
+        String readSubject = readText();
+        SubjectService.isValidSubject(readSubject);
+        Subject foundSubject = SubjectStore.getSubjectByIdAndName(readId, readSubject);
 
         System.out.println("회차, 점수를 입력해주세요");
         String input = readText();
-//       Score score = new Score(++SCORE_INDEX, readId, subjectId,input, subjectEnum);
-//        scoreStore.add(score);
+        Score score = new Score(++SCORE_INDEX, readId,
+                foundSubject.getSubjectId(), input, foundSubject.getSubjectType());
+        scoreStore.add(score);
     }
 
     public int readInt() {
@@ -42,11 +49,6 @@ public class ScoreService {
 
     public String readText() {
         return scanner.nextLine();
-    }
-
-    private String sequence(String prefix) {
-        SCORE_INDEX++;
-        return prefix + SCORE_INDEX;
     }
 
     public boolean updateScore(int studentId, int subjectId, int round, int score) {
@@ -64,11 +66,6 @@ public class ScoreService {
         scoreStore.updateScore(studentId, subjectId, round, score, type);
         return true;
     }
-
-
-//    public ScoreService(ScoreStore scoreStore) {
-//        this.scoreStore = scoreStore;
-//    }
 
 
     public String getGradeByIdAndSubjectAndSession(int studentId, int subject, int session) {

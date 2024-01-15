@@ -24,14 +24,14 @@ public class Score {
         this.grade = grade;
     }
 
-    public Score(int scoreId, int studentId, int subjectId, String text, SubjectEnum subjectEnum) {
+    public Score(int scoreId, int studentId, int subjectId, String text, String subjectType) {
         this.studentId = studentId;
         this.scoreId = scoreId;
         this.subjectId = subjectId;
         int[] parsed = parse(text);
         this.round = parsed[0];
         this.score = parsed[1];
-        this.grade = assignGrade(parsed[1], subjectEnum);
+        this.grade = assignGrade(parsed[1], subjectType);
     }
 
     private int[] parse(String text) {
@@ -60,24 +60,13 @@ public class Score {
         }
     }
 
-    private String assignGrade(int score, SubjectEnum subjectEnum) {
+    private String assignGrade(int score, String subjectType) {
         String grade = "";
-        //if mandatory
-        if (95 <= score && score <= 100) {
-            grade = "A";
-        } else if (90 <= score && score <= 94) {
-            grade = "B";
-        } else if (80 <= score && score <= 89) {
-            grade = "B";
-        } else if (70 <= score && score <= 79) {
-            grade = "B";
-        } else if (60 <= score && score <= 69) {
-            grade = "B";
+        if (subjectType.equals("필수")) {
+            grade = calcMandatoryGrade(score);
         } else {
-            grade = "N";
+            grade = calcChoiceGrade(score);
         }
-        //if choice
-
         return grade;
     }
 

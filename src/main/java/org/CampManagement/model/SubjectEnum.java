@@ -1,20 +1,20 @@
 package org.CampManagement.model;
 import org.CampManagement.model.Subject;
 public enum SubjectEnum {
-    JAVA(1, SubjectType.MANDATORY, "JAVA"),
-    UXUI(2, SubjectType.MANDATORY, "UXUI"),
-    NODEJS(3, SubjectType.MANDATORY, "NODEJS"),
-    AI(4, SubjectType.MANDATORY, "AI"),
-    REACT(5, SubjectType.SELECTIVE, "REACT"),
-    ANDROID(6, SubjectType.SELECTIVE, "ANDROID"),
-    DATA(7, SubjectType.SELECTIVE, "DATA");
+    JAVA(1, "필수", "JAVA"),
+    UXUI(2, "필수", "UXUI"),
+    NODEJS(3, "필수", "NODEJS"),
+    AI(4, "필수", "AI"),
+    REACT(5, "선택", "REACT"),
+    ANDROID(6, "선택", "ANDROID"),
+    DATA(7, "선택", "DATA");
 
 
     private final int subjectId;
-    private final SubjectType subjectType;
+    private final String subjectType;
     private final String subjectName;
 
-    SubjectEnum(int subjectId, SubjectType subjectType, String subjectName) {
+    SubjectEnum(int subjectId, String subjectType, String subjectName) {
         this.subjectId = subjectId;
         this.subjectType = subjectType;
         this.subjectName = subjectName;
@@ -24,15 +24,11 @@ public enum SubjectEnum {
         return subjectId;
     }
 
-    public SubjectType getSubjectType() {
+    public String getSubjectType() {
         return subjectType;
     }
 
-    public SubjectEnum getSubjectName() {
-        return SubjectEnum.valueOf(subjectName);
-    }
-    public enum SubjectType {
-        MANDATORY,
-        SELECTIVE
+    public String getSubjectName() {
+        return subjectName;
     }
 }

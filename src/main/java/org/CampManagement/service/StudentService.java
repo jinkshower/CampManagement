@@ -7,17 +7,15 @@ import java.util.List;
 
 public class StudentService {
 
-    private StudentStore studentStore;
+    public static StudentStore studentStore = new StudentStore();
 
     public boolean validateId(int studentId) {
         return studentStore.validateId(studentId);
     }
 
-
     public String getStudentName(int studentId) {
         return studentStore.getStudentName(studentId);
     }
-
 
     public void printStudentNamesAndIds() {
         List<Student> students = studentStore.getAllStudents();
@@ -32,15 +30,13 @@ public class StudentService {
         }
     }
 
-        private static int nextStudentId = 1;
+    private int nextStudentId = 0;
 
-        public static int generateStudentId () {
-            return nextStudentId++;
-        }
+    public int generateStudentId () {
+        return ++nextStudentId;
+    }
 
-        public static void saveStudent (String name){
-            int studentId = generateStudentId();
-            StudentStore.saveStudent(studentId, name);
-        }
-
+    public void saveStudent (String name, int studentId){
+        studentStore.saveStudent(studentId, name);
+    }
 }
