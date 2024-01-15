@@ -32,4 +32,14 @@ public class StudentService {
     public boolean validateId(int studentId) {
         return studentStore.validateId(studentId);
     }
-}
+        private static int nextStudentId = 1;
+
+        public static int generateStudentId () {
+            return nextStudentId++;
+        }
+
+        public static void saveStudent (String name){
+            int studentId = generateStudentId();
+            StudentStore.saveStudent(studentId, name);
+        }
+    }

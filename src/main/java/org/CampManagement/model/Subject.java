@@ -11,6 +11,7 @@ public class Subject {
     private String subjectName;
     private List<String> grades;  // 추가: 회차별 등급 정보를 저장할 리스트
 
+
     public Subject(int subjectId, int studentId, String subjectType, String subjectName) {
         this.subjectId = subjectId;
         this.studentId = studentId;
@@ -25,6 +26,8 @@ public class Subject {
         this.subjectName = subjectName;
         this.grades = new ArrayList<>();  // 초기화
     }
+
+
 
     public int getSubjectId() {
         return subjectId;
