@@ -9,7 +9,9 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class SubjectStore {
+
     private List<Subject> list = new ArrayList<>();
+    private static Map<Integer, Subject> subjectMap = new HashMap<>();
 
     public String getType(int studentId, int subjectId) {
 
@@ -23,12 +25,11 @@ public class SubjectStore {
         return subject.getSubjectType();
     }
 
-    private static Map<Integer, Subject> subjectMap = new HashMap<>();
-
     public static void saveSubject(int subjectId, int studentId, String subjectType, String subjectName) {
         Subject newSubject = new Subject(subjectId, studentId, subjectType, subjectName);
         subjectMap.put(studentId, newSubject);
         System.out.println("Subject saved - StudentId: " + studentId + ", SubjectId" + subjectId + ", Name: " + subjectType + ", Subject: " + subjectName);
 
     }
+
 }

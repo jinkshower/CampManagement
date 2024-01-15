@@ -1,24 +1,70 @@
 package org.CampManagement;
 
-import org.CampManagement.model.Student;
 import org.CampManagement.service.ScoreService;
 import org.CampManagement.service.StudentService;
 import org.CampManagement.service.SubjectService;
-import org.CampManagement.store.StudentStore;
 import org.CampManagement.model.SubjectEnum;
-import org.CampManagement.store.SubjectStore;
 
 import java.util.Scanner;
 
 public class ManagementApp {
 
-    private static StudentService studentService;
-    private static SubjectService subjectService;
-    private static ScoreService scoreService;
-
-
+    private static StudentService studentService = new StudentService();
+    private static SubjectService subjectService = new SubjectService();
+    private static ScoreService scoreService = new ScoreService();
+    private static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
+        startManagement();
+    }
+
+    private static void startManagement() {
+        System.out.println("1. 수강생 관리");
+        System.out.println("2. 점수 관리");
+
+        String str = sc.nextLine();
+
+        if ("1".equals(str)) {
+            manageStudent();
+        } else if("2".equals(str)){
+            manageScore();
+        } else {
+            startManagement();
+        }
+    }
+
+    private static void manageStudent() {
+        System.out.println("1. 수강생등록");
+        System.out.println("2. 수강생조회");
+
+        String str = sc.nextLine();
+
+        if (str.equals("1")) {
+            updateStudent();
+        } else if (str.equals("2")){
+            displayStudentInfo();
+        } else {
+            manageStudent();
+        }
+    }
+
+    private static void manageScore() {
+        System.out.println("1. 점수 등록");
+        System.out.println("2. 점수 수정");
+        System.out.println("3. 점수 조회");
+
+        String str = sc.nextLine();
+
+        if (str.equals("1")) {
+            scoreService.registerScore();
+            startManagement();
+        } else if (str.equals("2")) {
+            updateScore();
+        } else if (str.equals("3")) {
+            displayScoreDetails();
+        } else {
+            manageScore();
+        }
     }
 
     static void updateScore() {
@@ -47,9 +93,11 @@ public class ManagementApp {
 
         System.out.println("수정이 완료되었습니다.");
         System.out.println("===========================");
+
+        startManagement();
     }
 
-    private void displayStudentInfo() {
+    private static void displayStudentInfo() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("수강생 ID를 입력하세요: ");
         int studentId = scanner.nextInt();
@@ -61,9 +109,11 @@ public class ManagementApp {
             System.out.println("해당 ID의 수강생이 존재하지 않습니다.");
         }
         System.out.println("=============================");
+
+        startManagement();
     }
 
-    private void displayScoreDetails() {
+    private static void displayScoreDetails() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("수강생 ID를 입력하세요: ");
         int studentId = scanner.nextInt();
@@ -76,10 +126,10 @@ public class ManagementApp {
         System.out.println("과목 ID를 입력하세요: ");
         int subjectId = scanner.nextInt();
 
-        if (!subjectService.validateSubjectId(subjectId)) {
-            System.out.println("해당 ID의 과목이 존재하지 않습니다.");
-            return;
-        }
+//        if (!subjectService.validateSubjectId(subjectId)) {
+//            System.out.println("해당 ID의 과목이 존재하지 않습니다.");
+//            return;
+//        }
 
         System.out.println("회차를 입력하세요: ");
         int round = scanner.nextInt();
@@ -93,7 +143,10 @@ public class ManagementApp {
         }
 
         System.out.println("===========================");
+
+        startManagement();
     }
+
     static void updateStudent() {
         Scanner scanner = new Scanner(System.in);
 
@@ -129,6 +182,9 @@ public class ManagementApp {
         } finally {
             scanner.close();
         }
+
+        startManagement();
     }
+
 }
 

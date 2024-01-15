@@ -32,7 +32,6 @@ public class StudentService {
         }
     }
 
-
         private static int nextStudentId = 1;
 
         public static int generateStudentId () {
