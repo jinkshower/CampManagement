@@ -66,8 +66,8 @@ public class ScoreService {
         SubjectStore subjectStore = new SubjectStore();
         String type = subjectStore.getType(studentId, subjectId);
 
-        scoreStore.updateScore(studentId, subjectId, round, score, type);
-        return true;
+        // 없는 회차 예외
+        return scoreStore.updateScore(studentId, subjectId, round, score, type);
     }
 
 
