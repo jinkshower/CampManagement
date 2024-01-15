@@ -53,7 +53,8 @@ public class ScoreStore {
         }
 
         for (int i = 0; i < scores.size(); i++) {
-            if (studentId ==(scores.get(i).getStudentId()) && subjectId == (scores.get(i).getSubjectId())) {
+            if (studentId ==(scores.get(i).getStudentId()) && subjectId == (scores.get(i).getSubjectId())
+            && scores.get(i).getRound() == round) {
                 target = scores.get(i);
                 index = i;
             }
