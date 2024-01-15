@@ -31,4 +31,17 @@ public class StudentService {
             System.out.println("이름: " + student.getName() + ", 학생 ID: " + student.getStudentId());
         }
     }
+
+
+        private static int nextStudentId = 1;
+
+        public static int generateStudentId () {
+            return nextStudentId++;
+        }
+
+        public static void saveStudent (String name){
+            int studentId = generateStudentId();
+            StudentStore.saveStudent(studentId, name);
+        }
+
 }

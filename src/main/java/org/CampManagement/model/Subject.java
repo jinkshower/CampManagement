@@ -8,6 +8,7 @@ public class Subject {
     private int studentId;
     private String subjectName;
 
+
     public Subject(int subjectId, int studentId, String subjectType, String subjectName) {
         this.subjectId = subjectId;
         this.studentId = studentId;
@@ -20,6 +21,8 @@ public class Subject {
         this.subjectType = subjectType;
         this.subjectName = subjectName;
     }
+
+
 
     public int getSubjectId() {
         return subjectId;
