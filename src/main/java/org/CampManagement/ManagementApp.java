@@ -47,7 +47,6 @@ public class ManagementApp {
         System.out.println("===========================");
     }
 
-    // 수강생 특정 정보 출력 메소드
     private void displayStudentInfo() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("수강생 ID를 입력하세요: ");
@@ -62,7 +61,6 @@ public class ManagementApp {
         System.out.println("=============================");
     }
 
-    // 회차별 등급 조회 메소드
     private void displayScoreDetails() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("수강생 ID를 입력하세요: ");
