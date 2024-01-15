@@ -5,6 +5,8 @@ import org.CampManagement.model.Score;
 import org.CampManagement.model.SubjectEnum;
 import org.CampManagement.store.ScoreStore;
 import org.CampManagement.store.SubjectStore;
+import java.util.List;
+
 
 public class ScoreService {
 
@@ -26,7 +28,7 @@ public class ScoreService {
 
         System.out.println("회차, 점수를 입력해주세요");
         String input = readText();
-//        Score score = new Score(++SCORE_INDEX, readId, subjectId,input, subjectEnum);
+//       Score score = new Score(++SCORE_INDEX, readId, subjectId,input, subjectEnum);
 //        scoreStore.add(score);
     }
 
@@ -61,5 +63,36 @@ public class ScoreService {
 
         scoreStore.updateScore(studentId, subjectId, round, score, type);
         return true;
+    }
+
+
+    public ScoreService(ScoreStore scoreStore) {
+        this.scoreStore = scoreStore;
+    }
+
+
+    public String getGradeByIdAndSubjectAndSession(int studentId, int subject, int session) {
+        try {
+            return scoreStore.getGradeByIdAndSubjectAndSession(studentId, subject, session);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
+    public void getGradesBySubject(int studentId, int subject) {
+        try {
+            scoreStore.getGradesBySubject(studentId, subject);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void getScoresByStudentId(int studentId) {
+        try {
+            scoreStore.getScoresByStudentId(studentId);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

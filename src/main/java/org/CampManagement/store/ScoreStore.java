@@ -2,9 +2,9 @@ package org.CampManagement.store;
 
 import org.CampManagement.model.Score;
 
+import java.util.stream.Collectors;
 import java.util.ArrayList;
 import java.util.List;
-import org.CampManagement.model.Student;
 
 public class ScoreStore {
     private List<Score> list = new ArrayList<>();
@@ -33,7 +33,7 @@ public class ScoreStore {
                 .orElseThrow(IllegalAccessError::new);
     }
 
-    private boolean isInStore(int studentId) {
+    public boolean isInStore(int studentId) {
         return list.stream()
                 .map(Score::getStudentId)
                 .anyMatch(id -> id == studentId);
@@ -51,6 +51,48 @@ public class ScoreStore {
 
         target.updateScore(round, score, type);
         list.set(index, target);
+    }
+
+    public String getGradeByIdAndSubjectAndSession(int studentId, int subjectId, int session) {
+        for (Score score : list) {
+            if (score.getStudentId() == studentId && score.getSubjectId() == subjectId && score.getRound() == session) {
+                return score.getGrade();
+            }
+        }
+        throw new IllegalArgumentException("해당 학생 ID, 과목 ID, 회차에 대한 점수가 없습니다.");
+    }
+
+    public List<String> getGradesBySubject(int studentId, int subjectId) {
+        List<String> grades = new ArrayList<>();
+
+        for (Score score : list) {
+            if (score.getStudentId() == studentId && score.getSubjectId() == subjectId) {
+                grades.add(score.getGrade());
+            }
+        }
+
+        if (grades.isEmpty()) {
+            throw new IllegalArgumentException("해당 학생 ID와 과목 ID에 대한 점수가 없습니다.");
+        }
+
+        return grades;
+    }
+
+
+    public List<Score> getScoresByStudentId(int studentId) {
+        List<Score> studentScores = new ArrayList<>();
+
+        for (Score score : list) {
+            if (score.getStudentId() == studentId) {
+                studentScores.add(score);
+            }
+        }
+
+        if (studentScores.isEmpty()) {
+            throw new IllegalArgumentException("해당 학생 ID에 대한 점수가 없습니다.");
+        }
+
+        return studentScores;
     }
 
 }

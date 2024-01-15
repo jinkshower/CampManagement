@@ -11,14 +11,6 @@ import java.util.ArrayList;
 public class SubjectStore {
     private List<Subject> list = new ArrayList<>();
 
-    public void addSubject(Subject subject) {
-        list.add(subject);
-    }
-
-    public List<Subject> getSubjects() {
-        return list;
-    }
-
     public String getType(int studentId, int subjectId) {
 
         Subject subject = null;

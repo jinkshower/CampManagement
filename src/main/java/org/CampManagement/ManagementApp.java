@@ -19,8 +19,6 @@ public class ManagementApp {
 
 
     public static void main(String[] args) {
-        StudentStore studentStore = new StudentStore();
-        studentService = new StudentService(studentStore);
     }
 
     static void updateScore() {
@@ -51,24 +49,50 @@ public class ManagementApp {
         System.out.println("===========================");
     }
 
-    public ManagementApp() {
+    private void displayStudentInfo() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("수강생 ID를 입력하세요: ");
+        int studentId = scanner.nextInt();
 
+        if (studentService.validateId(studentId)) {
+            System.out.println("ID: " + studentId + ", 이름: " + studentService.getStudentName(studentId));
 
-
-        studentService.addStudent(new Student(1, "John Doe"));
-        studentService.addStudent(new Student(2, "Jane Doe"));
-    }
-
-    private void printStudentList() {
-        System.out.println("Printing Student List:");
-        studentService.printStudentListWithIds();
-    }
-
-    private void printStudentNamesWithIds() {
-        System.out.println("\nPrinting Student Names with IDs:");
-        for (String studentInfo : studentService.getStudentListWithIds()) {
-            System.out.println(studentInfo);
+        } else {
+            System.out.println("해당 ID의 수강생이 존재하지 않습니다.");
         }
+        System.out.println("=============================");
+    }
+
+    private void displayScoreDetails() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("수강생 ID를 입력하세요: ");
+        int studentId = scanner.nextInt();
+
+        if (!studentService.validateId(studentId)) {
+            System.out.println("해당 ID의 수강생이 존재하지 않습니다.");
+            return;
+        }
+
+        System.out.println("과목 ID를 입력하세요: ");
+        int subjectId = scanner.nextInt();
+
+        if (!subjectService.validateSubjectId(subjectId)) {
+            System.out.println("해당 ID의 과목이 존재하지 않습니다.");
+            return;
+        }
+
+        System.out.println("회차를 입력하세요: ");
+        int round = scanner.nextInt();
+
+        String grade = scoreService.getGradeByIdAndSubjectAndSession(studentId, subjectId, round);
+
+        if (grade != null) {
+            System.out.println("등급: " + grade);
+        } else {
+            System.out.println("해당 정보에 대한 등급이 존재하지 않습니다.");
+        }
+
+        System.out.println("===========================");
     }
     static void updateStudent() {
         Scanner scanner = new Scanner(System.in);
