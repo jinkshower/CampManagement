@@ -109,7 +109,7 @@ public class ManagementApp {
 
         if (studentService.validateId(studentId)) {
             System.out.println("ID: " + studentId + ", 이름: " + studentService.getStudentName(studentId));
-            //과목 조회 추가 TO DO
+            System.out.println("수강생 과목명" + subjectService.StudentSubjectName(studentId));
         } else {
             System.out.println("해당 ID의 수강생이 존재하지 않습니다.");
         }
