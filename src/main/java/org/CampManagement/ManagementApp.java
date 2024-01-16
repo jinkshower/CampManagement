@@ -157,7 +157,8 @@ public class ManagementApp {
 
         // StudentService를 사용하여 학생 ID 생성
         int studentId = studentService.generateStudentId();
-        System.out.print("과목을 입력하세요 (쉼표로 구분): ");
+        System.out.println(SubjectEnum.getSubjectsTypeAndName());
+        System.out.print("과목을 입력하세요 (쉼표로 구분): \n");
         String[] subjects = scanner.nextLine().split(",");
 
         try {

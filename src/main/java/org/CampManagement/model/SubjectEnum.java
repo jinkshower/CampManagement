@@ -1,4 +1,6 @@
 package org.CampManagement.model;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 import org.CampManagement.model.Subject;
 public enum SubjectEnum {
     JAVA(1, "필수", "JAVA"),
@@ -30,5 +32,15 @@ public enum SubjectEnum {
 
     public String getSubjectName() {
         return subjectName;
+    }
+
+    public String getMessage() {
+        return subjectType + " " + subjectName;
+    }
+
+    public static String getSubjectsTypeAndName() {
+        return Arrays.stream(values())
+                .map(SubjectEnum::getMessage)
+                .collect(Collectors.joining("\n"));
     }
 }
