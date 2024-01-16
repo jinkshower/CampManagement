@@ -79,20 +79,4 @@ public class ScoreService {
             return null;
         }
     }
-
-    public void getGradesBySubject(int studentId, int subject) {
-        try {
-            scoreStore.getGradesBySubject(studentId, subject);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    public void getScoresByStudentId(int studentId) {
-        try {
-            scoreStore.getScoresByStudentId(studentId);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
-    }
 }

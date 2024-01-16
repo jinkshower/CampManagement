@@ -16,12 +16,6 @@ public class Subject {
         this.subjectName = subjectName;
     }
 
-    public Subject(int subjectId, String subjectType, String subjectName) {
-        this.subjectId = subjectId;
-        this.subjectType = subjectType;
-        this.subjectName = subjectName;
-    }
-
     public int getSubjectId() {
         return subjectId;
     }

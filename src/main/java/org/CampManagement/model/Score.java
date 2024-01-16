@@ -70,10 +70,6 @@ public class Score {
         return grade;
     }
 
-    public int getScoreId() {
-        return scoreId;
-    }
-
     public int getStudentId() {
         return studentId;
     }
@@ -88,10 +84,6 @@ public class Score {
 
     public String getGrade() {
         return grade;
-    }
-
-    public int getScore() {
-        return score;
     }
 
     public void updateScore(int round, int score, String type) {

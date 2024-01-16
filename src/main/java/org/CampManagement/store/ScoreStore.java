@@ -74,36 +74,5 @@ public class ScoreStore {
         throw new IllegalArgumentException("해당 학생 ID, 과목 ID, 회차에 대한 점수가 없습니다.");
     }
 
-    public List<String> getGradesBySubject(int studentId, int subjectId) {
-        List<String> grades = new ArrayList<>();
-
-        for (Score score : scores) {
-            if (score.getStudentId() == studentId && score.getSubjectId() == subjectId) {
-                grades.add(score.getGrade());
-            }
-        }
-
-        if (grades.isEmpty()) {
-            throw new IllegalArgumentException("해당 학생 ID와 과목 ID에 대한 점수가 없습니다.");
-        }
-
-        return grades;
-    }
-
-    public List<Score> getScoresByStudentId(int studentId) {
-        List<Score> studentScores = new ArrayList<>();
-
-        for (Score score : scores) {
-            if (score.getStudentId() == studentId) {
-                studentScores.add(score);
-            }
-        }
-
-        if (studentScores.isEmpty()) {
-            throw new IllegalArgumentException("해당 학생 ID에 대한 점수가 없습니다.");
-        }
-
-        return studentScores;
-    }
 
 }

@@ -7,10 +7,6 @@ public class SubjectService {
 
     private static SubjectStore subjectStore = new SubjectStore();
 
-//    public boolean validateSubjectId(int subjectId) {
-//        return subjectStore.validateSubjectId(subjectId);
-//    }
-
     // 입력받은 subject가 SubjectEnum에 존재하는지 확인하는 메서드
     public static boolean isValidSubject (String subject){
         for (SubjectEnum subjectEnum : SubjectEnum.values()) {

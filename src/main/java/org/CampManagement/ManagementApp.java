@@ -1,5 +1,6 @@
 package org.CampManagement;
 
+import org.CampManagement.model.Subject;
 import org.CampManagement.service.ScoreService;
 import org.CampManagement.service.StudentService;
 import org.CampManagement.service.SubjectService;
@@ -79,14 +80,15 @@ public class ManagementApp {
             updateScore();
         }
 
-        System.out.println("과목ID를 입력해주세요");
-        int subjectId = Integer.parseInt(sc.nextLine());
+        System.out.println("과목명을 입력 해주세요");
+        String text = sc.nextLine();
+        Subject foundSubject = SubjectStore.getSubjectByIdAndName(id, text);
 
         System.out.println("회차와 점수를 입력해주세요 ex) 1, 100");
         String[] str = sc.nextLine().split(",");
         int round = Integer.parseInt(str[0].trim());
         int score = Integer.parseInt(str[1].trim());
-        if (!scoreService.updateScore(id, subjectId, round, score)) {
+        if (!scoreService.updateScore(id, foundSubject.getSubjectId(), round, score)) {
             System.out.println("입력오류입니다");
             startManagement();
         }
@@ -123,18 +125,15 @@ public class ManagementApp {
             return;
         }
 
-        System.out.println("과목 ID를 입력하세요: ");
-        int subjectId = scanner.nextInt();
+        System.out.println("과목명을 입력 해주세요");
+        String text = sc.nextLine();
+        Subject foundSubject = SubjectStore.getSubjectByIdAndName(studentId, text);
 
-//        if (!subjectService.validateSubjectId(subjectId)) {
-//            System.out.println("해당 ID의 과목이 존재하지 않습니다.");
-//            return;
-//        }
 
         System.out.println("회차를 입력하세요: ");
         int round = scanner.nextInt();
 
-        String grade = scoreService.getGradeByIdAndSubjectAndSession(studentId, subjectId, round);
+        String grade = scoreService.getGradeByIdAndSubjectAndSession(studentId, foundSubject.getSubjectId(), round);
 
         if (grade != null) {
             System.out.println("등급: " + grade);
@@ -178,8 +177,6 @@ public class ManagementApp {
         } catch (Exception e) {
             System.out.println("예외 발생: " + e.getMessage());
         }
-        System.out.println(studentService.studentStore.getAllStudents());
-
         startManagement();
     }
 
