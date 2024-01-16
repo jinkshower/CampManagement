@@ -26,4 +26,14 @@ public class StudentService {
     public void saveStudent (String name, int studentId){
         studentStore.saveStudent(studentId, name);
     }
+
+    // 학생 이름 수정
+    public Student updateStudent(int studentId, String updateName) {
+        return StudentStore.updateStudent(studentId, updateName);
+    }
+
+    // 존재하는 학생 확인
+    public boolean isValidStudentId(int StudentId) {
+        return studentStore.isValidStudentId(StudentId);
+    }
 }

@@ -55,4 +55,8 @@ public class SubjectService {
     public static boolean validateSubjectByStudentId(int studentId, int subjectId) {
         return  subjectStore.validateSubjectByStudentId(studentId, subjectId);
     }
+
+    public String StudentSubjectName(int studentId) {
+        return subjectStore.getSubjectsById(studentId);
+    }
 }

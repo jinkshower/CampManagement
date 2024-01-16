@@ -1,5 +1,6 @@
 package org.CampManagement;
 
+import org.CampManagement.model.Student;
 import org.CampManagement.model.Subject;
 import org.CampManagement.service.ScoreService;
 import org.CampManagement.service.StudentService;
@@ -38,6 +39,7 @@ public class ManagementApp {
     private static void manageStudent() {
         System.out.println("1. 수강생등록");
         System.out.println("2. 수강생조회");
+        System.out.println("3. 수강생수정");
 
         String str = sc.nextLine();
 
@@ -45,6 +47,8 @@ public class ManagementApp {
             updateStudent();
         } else if (str.equals("2")){
             displayStudentInfo();
+        } else if (str.equals("3")){
+            adjustStudent();
         } else {
             manageStudent();
         }
@@ -106,7 +110,7 @@ public class ManagementApp {
 
         if (studentService.validateId(studentId)) {
             System.out.println("ID: " + studentId + ", 이름: " + studentService.getStudentName(studentId));
-
+            System.out.println("수강생 과목명" + subjectService.StudentSubjectName(studentId));
         } else {
             System.out.println("해당 ID의 수강생이 존재하지 않습니다.");
         }
@@ -154,7 +158,8 @@ public class ManagementApp {
 
         // StudentService를 사용하여 학생 ID 생성
         int studentId = studentService.generateStudentId();
-        System.out.print("과목을 입력하세요 (쉼표로 구분): ");
+        System.out.println(SubjectEnum.getSubjectsTypeAndName());
+        System.out.print("과목을 입력하세요 (쉼표로 구분): \n");
         String[] subjects = scanner.nextLine().split(",");
 
         try {
@@ -180,5 +185,25 @@ public class ManagementApp {
         startManagement();
     }
 
+    // 학생 이름 수정
+    private static void adjustStudent() {
+        System.out.println("학생 아이디를 입력하세요");
+        int studentId = Integer.parseInt(sc.nextLine());
+
+        if (!studentService.isValidStudentId(studentId)) {
+            System.out.println("없는 학생입니다.");
+            startManagement();
+        }
+
+        System.out.println("수정할 이름을 입력해주세요");
+        String updateName = sc.nextLine();
+
+        Student student = studentService.updateStudent(studentId, updateName);
+
+        System.out.println(student.getStudentId() + ", " + student.getName());
+        System.out.println("수정이 완료되었습니다.");
+        startManagement();
+
+    }
 }
 

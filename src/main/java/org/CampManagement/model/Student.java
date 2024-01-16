@@ -17,4 +17,9 @@ public class Student {
     public String getName() {
         return name;
     }
+
+    // 학생 이름 수정
+    public void updateName(String updateName) {
+        this.name = updateName;
+    }
 }
