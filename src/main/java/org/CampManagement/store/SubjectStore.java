@@ -4,6 +4,7 @@ import org.CampManagement.model.Subject;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class SubjectStore {
 
@@ -40,5 +41,12 @@ public class SubjectStore {
         return subjects.stream()
                 .anyMatch(subject -> subject.getStudentId() == studentId
                         && subject.getSubjectId() == subjectId);
+    }
+
+    public String getSubjectsById(int studentId) {
+        return subjects.stream()
+                .filter(subject -> subject.getStudentId() == studentId)
+                .map(subject -> subject.getSubjectName())
+                .collect(Collectors.joining(","));
     }
 }
