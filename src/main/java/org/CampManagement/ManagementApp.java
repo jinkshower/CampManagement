@@ -1,5 +1,6 @@
 package org.CampManagement;
 
+import org.CampManagement.model.Student;
 import org.CampManagement.model.Subject;
 import org.CampManagement.service.ScoreService;
 import org.CampManagement.service.StudentService;
@@ -183,8 +184,25 @@ public class ManagementApp {
         startManagement();
     }
 
+    // 학생 이름 수정
     private static void adjustStudent() {
-        // 이름 수정
+        System.out.println("학생 아이디를 입력하세요");
+        int studentId = Integer.parseInt(sc.nextLine());
+
+        if (!studentService.isValidStudentId(studentId)) {
+            System.out.println("없는 학생입니다.");
+            startManagement();
+        }
+
+        System.out.println("수정할 이름을 입력해주세요");
+        String updateName = sc.nextLine();
+
+        Student student = studentService.updateStudent(studentId, updateName);
+
+        System.out.println(student.getStudentId() + ", " + student.getName());
+        System.out.println("수정이 완료되었습니다.");
+        startManagement();
+
     }
 }
 
