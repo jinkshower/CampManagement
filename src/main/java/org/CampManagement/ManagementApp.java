@@ -38,6 +38,7 @@ public class ManagementApp {
     private static void manageStudent() {
         System.out.println("1. 수강생등록");
         System.out.println("2. 수강생조회");
+        System.out.println("3. 수강생수정");
 
         String str = sc.nextLine();
 
@@ -45,6 +46,8 @@ public class ManagementApp {
             updateStudent();
         } else if (str.equals("2")){
             displayStudentInfo();
+        } else if (str.equals("3")){
+            adjustStudent();
         } else {
             manageStudent();
         }
@@ -106,7 +109,7 @@ public class ManagementApp {
 
         if (studentService.validateId(studentId)) {
             System.out.println("ID: " + studentId + ", 이름: " + studentService.getStudentName(studentId));
-
+            //과목 조회 추가 TO DO
         } else {
             System.out.println("해당 ID의 수강생이 존재하지 않습니다.");
         }
@@ -180,5 +183,8 @@ public class ManagementApp {
         startManagement();
     }
 
+    private static void adjustStudent() {
+        // 이름 수정
+    }
 }
 
