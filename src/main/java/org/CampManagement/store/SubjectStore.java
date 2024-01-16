@@ -35,4 +35,10 @@ public class SubjectStore {
                 .orElseThrow(IllegalArgumentException::new);
     }
 
+    // 점수 수정 : 없는과목 예외
+    public boolean validateSubjectByStudentId(int studentId, int subjectId) {
+        return subjects.stream()
+                .anyMatch(subject -> subject.getStudentId() == studentId
+                        && subject.getSubjectId() == subjectId);
+    }
 }

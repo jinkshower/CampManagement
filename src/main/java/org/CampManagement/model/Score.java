@@ -97,7 +97,7 @@ public class Score {
     public void updateScore(int round, int score, String type) {
         this.round = round;
         this.score = score;
-        this.grade = type.equals("Mandatory") ? calcMandatoryGrade(score) : calcChoiceGrade(score);
+        this.grade = type.equals("필수") ? calcMandatoryGrade(score) : calcChoiceGrade(score);
     }
 
     public String calcChoiceGrade(int score) {

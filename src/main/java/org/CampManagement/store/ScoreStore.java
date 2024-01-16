@@ -2,16 +2,15 @@ package org.CampManagement.store;
 
 import org.CampManagement.model.Score;
 
-import java.util.stream.Collectors;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ScoreStore {
-    private List<Score> list = new ArrayList<>();
+    private List<Score> scores = new ArrayList<>();
 
     public void add(Score score) {
         validate(score);
-        list.add(score);
+        scores.add(score);
     }
 
     private void validate(Score score) {
@@ -27,34 +26,47 @@ public class ScoreStore {
     }
 
     private Score findByStudentId(int studentId) {
-        return list.stream()
+        return scores.stream()
                 .filter(score -> score.getStudentId() == studentId)
                 .findAny()
                 .orElseThrow(IllegalAccessError::new);
     }
 
     public boolean isInStore(int studentId) {
-        return list.stream()
+        return scores.stream()
                 .map(Score::getStudentId)
                 .anyMatch(id -> id == studentId);
     }
 
-    public void updateScore(int studentId, int subjectId, int round, int score, String type) {
+    public boolean updateScore(int studentId, int subjectId, int round, int score, String type) {
         Score target = null;
         int index = 0;
-        for (int i = 0; i < list.size(); i++) {
-            if (studentId ==(list.get(i).getStudentId()) && subjectId == (list.get(i).getSubjectId())) {
-                target = list.get(i);
+
+        // 없는 회차 예외
+        boolean validRound = scores.stream()
+                .anyMatch(s -> s.getStudentId() == studentId
+                        && s.getSubjectId() == subjectId
+                        && s.getRound() == round);
+
+        if(!validRound) {
+            return false;
+        }
+
+        for (int i = 0; i < scores.size(); i++) {
+            if (studentId ==(scores.get(i).getStudentId()) && subjectId == (scores.get(i).getSubjectId())
+            && scores.get(i).getRound() == round) {
+                target = scores.get(i);
                 index = i;
             }
         }
 
         target.updateScore(round, score, type);
-        list.set(index, target);
+        scores.set(index, target);
+        return true;
     }
 
     public String getGradeByIdAndSubjectAndSession(int studentId, int subjectId, int session) {
-        for (Score score : list) {
+        for (Score score : scores) {
             if (score.getStudentId() == studentId && score.getSubjectId() == subjectId && score.getRound() == session) {
                 return score.getGrade();
             }
@@ -65,7 +77,7 @@ public class ScoreStore {
     public List<String> getGradesBySubject(int studentId, int subjectId) {
         List<String> grades = new ArrayList<>();
 
-        for (Score score : list) {
+        for (Score score : scores) {
             if (score.getStudentId() == studentId && score.getSubjectId() == subjectId) {
                 grades.add(score.getGrade());
             }
@@ -81,7 +93,7 @@ public class ScoreStore {
     public List<Score> getScoresByStudentId(int studentId) {
         List<Score> studentScores = new ArrayList<>();
 
-        for (Score score : list) {
+        for (Score score : scores) {
             if (score.getStudentId() == studentId) {
                 studentScores.add(score);
             }

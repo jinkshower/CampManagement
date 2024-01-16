@@ -3,10 +3,8 @@ package org.CampManagement.service;
 import java.util.Scanner;
 import org.CampManagement.model.Score;
 import org.CampManagement.model.Subject;
-import org.CampManagement.model.SubjectEnum;
 import org.CampManagement.store.ScoreStore;
 import org.CampManagement.store.SubjectStore;
-import java.util.List;
 
 
 public class ScoreService {
@@ -60,11 +58,16 @@ public class ScoreService {
             return false;
         }
 
+        // 없는 과목 예외
+        if (!SubjectService.validateSubjectByStudentId(studentId, subjectId)) {
+            return false;
+        }
+
         SubjectStore subjectStore = new SubjectStore();
         String type = subjectStore.getType(studentId, subjectId);
 
-        scoreStore.updateScore(studentId, subjectId, round, score, type);
-        return true;
+        // 없는 회차 예외
+        return scoreStore.updateScore(studentId, subjectId, round, score, type);
     }
 
 
